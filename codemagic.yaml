@@ -6,17 +6,54 @@ workflows:
       android_signing:
         - focusfilter_keystore
     scripts:
+      - name: Debug signing environment
+        script: |
+          echo "=== SIGNING ENVIRONMENT ===" >> signing_debug.txt
+          echo "CM_KEYSTORE_PATH: $CM_KEYSTORE_PATH" >> signing_debug.txt
+          echo "CM_KEYSTORE_PASSWORD: ${#CM_KEYSTORE_PASSWORD}" >> signing_debug.txt
+          echo "CM_KEY_ALIAS: $CM_KEY_ALIAS" >> signing_debug.txt
+          echo "CM_KEY_PASSWORD: ${#CM_KEY_PASSWORD}" >> signing_debug.txt
+          echo "===========================" >> signing_debug.txt
+          echo "Files in keystore path:" >> signing_debug.txt
+          ls -la $CM_KEYSTORE_PATH >> signing_debug.txt 2>&1
+          cat signing_debug.txt
       - name: Unpack project
         script: |
-          tar -xzf FocusFilter_V5.tar.gz-6.tar
+          tar -xf FocusFilter_V5.tar.gz-5.tar
+          ls -la
+      - name: Check signing config in build.gradle
+        script: |
+          echo "=== SIGNING CONFIG IN BUILD.GRADLE ===" >> build_debug.txt
+          grep -A 10 "signingConfigs" FocusFilter/app/build.gradle >> build_debug.txt 2>&1
+          grep -A 5 "buildTypes" FocusFilter/app/build.gradle >> build_debug.txt 2>&1
+          cat build_debug.txt
       - name: Generate gradlew
         script: |
           cd FocusFilter
           gradle wrapper
           chmod +x gradlew
-      - name: Build Signed Release APK
+      - name: Build Signed Release APK with full log
         script: |
           cd FocusFilter
-          ./gradlew assembleRelease --stacktrace --info
+          ./gradlew assembleRelease --stacktrace --info > full_build_log.txt 2>&1
+          cat full_build_log.txt
+      - name: Check if APK is signed
+        script: |
+          echo "=== APK SIGNING VERIFICATION ===" >> apk_check.txt
+          if ls FocusFilter/app/build/outputs/apk/release/*.apk 2>/dev/null; then
+            APK_PATH=$(ls FocusFilter/app/build/outputs/apk/release/*.apk | head -1)
+            echo "APK found at: $APK_PATH" >> apk_check.txt
+            # Try to verify signature
+            jarsigner -verify -verbose $APK_PATH >> apk_check.txt 2>&1 || echo "Signature verification failed" >> apk_check.txt
+          else
+            echo "NO RELEASE APK FOUND" >> apk_check.txt
+            echo "Contents of release folder:" >> apk_check.txt
+            ls -la FocusFilter/app/build/outputs/apk/release/ >> apk_check.txt 2>&1 || echo "No release folder" >> apk_check.txt
+          fi
+          cat apk_check.txt
     artifacts:
+      - FocusFilter/full_build_log.txt
+      - FocusFilter/signing_debug.txt
+      - FocusFilter/build_debug.txt
+      - FocusFilter/apk_check.txt
       - FocusFilter/app/build/outputs/apk/release/*.apk
