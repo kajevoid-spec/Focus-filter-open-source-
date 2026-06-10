@@ -12,18 +12,15 @@ workflows:
           ls -la
       - name: Generate gradlew
         script: |
-          cd FocusFilter
           gradle wrapper
           chmod +x gradlew
       - name: Build Signed Release APK
         script: |
-          cd FocusFilter
           ./gradlew assembleRelease --stacktrace --info
       - name: Verify APK
         script: |
           echo "=== APK Verification ==="
-          ls -la FocusFilter/app/build/outputs/apk/release/
-          file FocusFilter/app/build/outputs/apk/release/*.apk
+          ls -la app/build/outputs/apk/release/
+          file app/build/outputs/apk/release/*.apk
     artifacts:
-      - FocusFilter/app/build/outputs/apk/release/*.apk
-      - FocusFilter/build_log.txt
+      - app/build/outputs/apk/release/*.apk
