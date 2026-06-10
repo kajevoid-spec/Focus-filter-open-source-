@@ -1,0 +1,22 @@
+workflows:
+  android-release:
+    name: Build FocusFilter Release APK
+    environment:
+      java: 17
+      android_signing:
+        - focusfilter_keystore
+    scripts:
+      - name: Unpack project
+        script: |
+          tar -xzf FocusFilter_V5.tar.gz
+      - name: Generate gradlew
+        script: |
+          cd FocusFilter
+          gradle wrapper
+          chmod +x gradlew
+      - name: Build Signed Release APK
+        script: |
+          cd FocusFilter
+          ./gradlew assembleRelease --stacktrace --info
+    artifacts:
+      - FocusFilter/app/build/outputs/apk/release/*.apk
