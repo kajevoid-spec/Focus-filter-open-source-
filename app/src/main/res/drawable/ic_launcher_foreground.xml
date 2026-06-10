@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- ── Motion / speed lines (left side) ──────────────────────────────────── -->
+
+    <!-- Row 1: top dots, shrinking left→right -->
+    <path android:fillColor="#7AFFFFFF"
+          android:pathData="M15,36 a4.5,4.5 0 1,0 9,0 a4.5,4.5 0 1,0 -9,0"/>
+    <path android:fillColor="#4DFFFFFF"
+          android:pathData="M27,36 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0"/>
+    <path android:fillColor="#26FFFFFF"
+          android:pathData="M37,36 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0"/>
+
+    <!-- Row 2: middle pills (largest → smallest) -->
+    <path android:fillColor="#99FFFFFF"
+          android:pathData="M8,48 L20,48 Q24,48 24,52 Q24,56 20,56 L8,56 Q4,56 4,52 Q4,48 8,48 Z"/>
+    <path android:fillColor="#60FFFFFF"
+          android:pathData="M27,49.5 L35,49.5 Q38,49.5 38,52 Q38,54.5 35,54.5 L27,54.5 Q24,54.5 24,52 Q24,49.5 27,49.5 Z"/>
+    <path android:fillColor="#33FFFFFF"
+          android:pathData="M40,50.5 L44,50.5 Q46,50.5 46,52 Q46,53.5 44,53.5 L40,53.5 Q38,53.5 38,52 Q38,50.5 40,50.5 Z"/>
+
+    <!-- Row 3: bottom dots, shrinking left→right -->
+    <path android:fillColor="#7AFFFFFF"
+          android:pathData="M15,68 a4.5,4.5 0 1,0 9,0 a4.5,4.5 0 1,0 -9,0"/>
+    <path android:fillColor="#4DFFFFFF"
+          android:pathData="M27,68 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0"/>
+    <path android:fillColor="#26FFFFFF"
+          android:pathData="M37,68 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0"/>
+
+    <!-- ── Speech bubble ─────────────────────────────────────────────────────── -->
+
+    <!-- Outer glow / shadow ring -->
+    <path android:fillColor="#22FFFFFF"
+          android:pathData="M66,22 a30,30 0 1,0 0.01,0 Z"/>
+
+    <!-- Main bubble body: circle at (66,52) r=26 -->
+    <path android:fillColor="#3D7FFF"
+          android:pathData="M40,52 a26,26 0 1,0 52,0 a26,26 0 1,0 -52,0 Z"/>
+
+    <!-- Speech bubble tail (bottom-left) -->
+    <path android:fillColor="#3D7FFF"
+          android:pathData="M48,72 L42,85 L60,76 Z"/>
+
+    <!-- ── Bold "F" letter (white) ───────────────────────────────────────────── -->
+
+    <!-- Vertical bar -->
+    <path android:fillColor="#FFFFFF"
+          android:pathData="M58,38 L65,38 L65,66 L58,66 Z"/>
+    <!-- Top horizontal bar -->
+    <path android:fillColor="#FFFFFF"
+          android:pathData="M58,38 L78,38 L78,45 L58,45 Z"/>
+    <!-- Middle horizontal bar -->
+    <path android:fillColor="#FFFFFF"
+          android:pathData="M58,51 L75,51 L75,58 L58,58 Z"/>
+
+</vector>
