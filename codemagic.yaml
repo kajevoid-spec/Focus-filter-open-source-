@@ -8,7 +8,7 @@ workflows:
     scripts:
       - name: Unpack project
         script: |
-          tar -xf FocusFilter_V5.tar.gz-7.tar
+          tar -xf FocusFilter_V5_fixed.tar.gz
           ls -la
       - name: Generate gradlew
         script: |
