@@ -1,38 +1,11 @@
-# Built application files
-*.apk
-*.aab
-*.ap_
-
-# Build directories
-build/
-app/build/
-
-# Local configuration files
-local.properties
-*.properties.local
-
-# Gradle
-.gradle/
-gradle-wrapper.jar
-
-# Android Studio
-.idea/
-*.iml
-*.iws
-*.ipr
-.DS_Store
-captures/
-
-# Keystore — NEVER commit signing keys
 *.jks
 *.keystore
-release.properties
-
-# Generated files
-app/src/main/assets/generated/
-
-# Scripts — dev utilities, not needed by contributors
-generate_icons.py
-
-# OS
-Thumbs.db
+keystore.properties
+local.properties
+google-services.json
+.env
+/build/
+/app/build/
+.gradle/
+*.tar.gz
+*.zip
