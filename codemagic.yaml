@@ -8,25 +8,19 @@ workflows:
     scripts:
       - name: Unpack project
         script: |
-          tar -xf FocusFilter_V5_fixed.tar.gz
-          cd FocusFilter
+          FocusFilter_V5_fixed.tar.gz
+          ls -la
+      - name: Generate gradlew
+        script: |
+          gradle wrapper
           chmod +x gradlew
-
       - name: Build Signed Release APK
         script: |
-          cd FocusFilter
-          ./gradlew assembleRelease \
-            -Pandroid.injected.signing.store.file=$CM_KEYSTORE_PATH \
-            -Pandroid.injected.signing.store.password=$CM_KEYSTORE_PASSWORD \
-            -Pandroid.injected.signing.key.alias=$CM_KEY_ALIAS \
-            -Pandroid.injected.signing.key.password=$CM_KEY_PASSWORD \
-            --stacktrace
-
+          ./gradlew assembleRelease --stacktrace --info
       - name: Verify APK
         script: |
           echo "=== APK Verification ==="
-          ls -la FocusFilter/app/build/outputs/apk/release/
-          file FocusFilter/app/build/outputs/apk/release/*.apk
-
+          ls -la app/build/outputs/apk/release/
+          file app/build/outputs/apk/release/*.apk
     artifacts:
-      - FocusFilter/app/build/outputs/apk/release/*.apk
+      - app/build/outputs/apk/release/*.apk
