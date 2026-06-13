@@ -3,12 +3,14 @@
 package com.focusfilter.ui.legal
 
 import android.content.Intent
+import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.focusfilter.FocusFilterApplication
@@ -26,6 +28,12 @@ class LegalConsentFragment : Fragment() {
         val cbPrivacy   = view.findViewById<CheckBox>(R.id.cbPrivacyPolicy)
         val cbTerms     = view.findViewById<CheckBox>(R.id.cbTermsOfService)
         val btnContinue = view.findViewById<MaterialButton>(R.id.btnContinue)
+
+        // Underline the link titles programmatically
+        view.findViewById<TextView>(R.id.tvPrivacyTitle).paintFlags =
+            view.findViewById<TextView>(R.id.tvPrivacyTitle).paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        view.findViewById<TextView>(R.id.tvTermsTitle).paintFlags =
+            view.findViewById<TextView>(R.id.tvTermsTitle).paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         btnContinue.isEnabled = false
 
