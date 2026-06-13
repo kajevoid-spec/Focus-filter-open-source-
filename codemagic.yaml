@@ -6,10 +6,6 @@ workflows:
       android_signing:
         - focusfilter_keystore
     scripts:
-      - name: Unpack project
-        script: |
-          FocusFilter_V5_fixed.tar.gz
-          ls -la
       - name: Generate gradlew
         script: |
           gradle wrapper
