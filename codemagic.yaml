@@ -1,0 +1,22 @@
+workflows:
+  android-release:
+    name: Build FocusFilter Release APK
+    environment:
+      java: 17
+      android_signing:
+        - focusfilter_keystore
+    scripts:
+      - name: Generate Gradle Wrapper
+        script: |
+          gradle wrapper
+          chmod +x gradlew
+      - name: Build Signed Release APK
+        script: |
+          ./gradlew assembleRelease --stacktrace --info
+      - name: Verify APK
+        script: |
+          echo "=== APK Verification ==="
+          ls -la app/build/outputs/apk/release/ || echo "No APK found"
+          file app/build/outputs/apk/release/*.apk 2>/dev/null || echo "APK file missing"
+    artifacts:
+      - app/build/outputs/apk/release/*.apk
