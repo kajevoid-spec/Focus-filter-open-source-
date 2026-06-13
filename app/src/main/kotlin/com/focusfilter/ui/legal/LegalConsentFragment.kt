@@ -37,11 +37,11 @@ class LegalConsentFragment : Fragment() {
         cbTerms.setOnCheckedChangeListener   { _, _ -> updateButton() }
 
         view.findViewById<View>(R.id.layoutPrivacyRow)?.setOnClickListener {
-            openUrl("https://focusfilterpage.netlify.app/")
+            openUrl("https://focusfilterofficial.netlify.app/legal")
         }
 
         view.findViewById<View>(R.id.layoutTermsRow)?.setOnClickListener {
-            openUrl("https://focusfilterpage.netlify.app/")
+            openUrl("https://focusfilterofficial.netlify.app/legal")
         }
 
         btnContinue.setOnClickListener {
