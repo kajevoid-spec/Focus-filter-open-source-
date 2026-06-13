@@ -95,8 +95,8 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupAiSection() {
-        val green  = ContextCompat.getColor(requireContext(), R.color.accent_teal)
-        val amber  = ContextCompat.getColor(requireContext(), R.color.accent_amber)
+        val green = ContextCompat.getColor(requireContext(), R.color.accent_teal)
+        val amber = ContextCompat.getColor(requireContext(), R.color.accent_amber)
 
         vm.isModelLoaded.observe(viewLifecycleOwner) { loaded ->
             if (loaded) {
@@ -153,13 +153,13 @@ class SettingsFragment : Fragment() {
 
     private fun setupLegalAndAbout() {
         binding.btnPrivacyPolicy.setOnClickListener {
-            openUrl("https://focusfilterofficial.netlify.app/legal.html#privacy")
+            openUrl("https://focusfilterofficial.netlify.app/legal")
         }
         binding.btnTermsOfService.setOnClickListener {
-            openUrl("https://focusfilterofficial.netlify.app/legal.html#terms")
+            openUrl("https://focusfilterofficial.netlify.app/legal")
         }
         binding.btnAboutWebsite.setOnClickListener {
-            openUrl("https://focusfilterpage.netlify.app/")
+            openUrl("https://focusfilterofficial.netlify.app/")
         }
     }
 
@@ -173,7 +173,7 @@ class SettingsFragment : Fragment() {
         val green = ContextCompat.getColor(requireContext(), R.color.accent_teal)
         val red   = ContextCompat.getColor(requireContext(), R.color.accent_red)
 
-        binding.tvNotifStatus.text  = if (notifGranted) "Granted" else "Not granted"
+        binding.tvNotifStatus.text = if (notifGranted) "Granted" else "Not granted"
         binding.tvNotifStatus.setTextColor(if (notifGranted) green else red)
         binding.btnGrantNotification.visibility = if (notifGranted) View.GONE else View.VISIBLE
     }
