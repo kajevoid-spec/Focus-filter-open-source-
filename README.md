@@ -1,59 +1,15 @@
 # FocusFilter
 
-> On-device AI notification filter for Android. Blocks spam. Keeps OTPs, bank alerts, and emergencies. 100% local — your data never leaves your phone.
-
-![Android](https://img.shields.io/badge/Android-26%2B-green?logo=android)
-![Kotlin](https://img.shields.io/badge/Kotlin-1.9.x-purple?logo=kotlin)
-![License](https://img.shields.io/badge/License-GPL%20v3-blue)
-![No Tracking](https://img.shields.io/badge/Tracking-None-brightgreen)
-
----
-
-## What It Does
-
-FocusFilter intercepts every notification and runs it through a 12-step AI pipeline before deciding whether to allow, hold, or block it. All processing is on-device using a 4.3MB quantized BERT model.
-
-**Always allowed:** OTPs, bank transactions, payment alerts, emergency calls, security alerts
-
-**Filtered:** Promo offers, flash sales, spam, irrelevant marketing
-
-**Held for review:** Ambiguous notifications — reviewed in the Filtered Inbox
-
----
-
-## How It Works — The Pipeline
-
-Every notification passes through up to 12 steps:
-
-1. Focus mode active check
-2. System app guard
-3. User trusted apps check
-4. Finance safelist (TNG, GrabPay, GoPay, GCash, MAE, Boost + global banks)
-5. BERT AI inference (bert-tiny, INT8 quantized, ONNX Runtime)
-6. Keyword classifier (80+ seeds across OTP, bank, delivery, security)
-7. Critical label safety net — OTP/payment always allowed regardless of BERT score
-8. Cross-validation — BERT and keyword classifier must agree before blocking
-9. User-defined rule engine
-10. Sender reputation (per-app allow/block history)
-11. Mode default action
-12. Log and deliver with full reason string
-
----
+A premium Android notification filtering app. 100% local-first, offline, and private — no data ever leaves your device.
 
 ## Features
 
+- **Notification Listener** — intercepts notifications in real-time using `NotificationListenerService`
+- **Rule-based Filtering Engine** — VIP contacts, allowed apps, keyword rules, custom rules
 - **4 Focus Modes** — Gaming, Work, Sleep, Custom
-- **On-Device BERT** — bert-tiny-finetuned-sms-spam-detection, INT8 quantized, 4.3MB
-- **Filtered Inbox** — review held notifications anytime
-- **Activity Logs** — full audit trail with classifier reason strings
-- **Trusted Apps** — user-defined apps that always pass through
-- **Keyword Safelist** — 80+ default seeds, fully editable
-- **Custom Rules** — per-app and per-keyword rules
-- **SEA Market Coverage** — TNG eWallet, GrabPay, GoPay, GCash, MoMo, ZaloPay, MAE, Boost
-- **Auto-purge** — logs deleted after 14 days (non-permanent entries)
-- **Zero Internet Permission** — architecturally impossible to transmit data
-
----
+- **Filtered Inbox** — view, restore, or delete held/blocked notifications
+- **DND Integration** — auto-toggles Do Not Disturb per active mode
+- **Local Classifier** — keyword-based on-device classification (OTP, payment, spam, social, etc.)
 
 ## Requirements
 
@@ -62,33 +18,23 @@ Every notification passes through up to 12 steps:
 - Kotlin 1.9.x
 - Java 17
 - Gradle 8.4
-- Min SDK: Android 8.0 (API 26)
-
----
 
 ## Build Instructions
 
-### 1. Clone
-
-```bash
-git clone https://github.com/yourusername/FocusFilter.git
-cd FocusFilter
-```
-
-### 2. Open in Android Studio
+### 1. Open in Android Studio
 
 ```
 File → Open → select the FocusFilter/ directory
 ```
 
-### 3. Sync Gradle
+### 2. Sync Gradle
 
 Android Studio will auto-sync. If not:
 ```
 File → Sync Project with Gradle Files
 ```
 
-### 4. Build Debug APK
+### 3. Build Debug APK
 
 ```
 Build → Build Bundle(s) / APK(s) → Build APK(s)
@@ -96,128 +42,90 @@ Build → Build Bundle(s) / APK(s) → Build APK(s)
 
 Output: `app/build/outputs/apk/debug/app-debug.apk`
 
-### 5. Command Line
+### 4. Build Release APK (sideloadable)
 
-```bash
-./gradlew assembleDebug    # debug APK
-./gradlew assembleRelease  # release APK (needs signing config)
-./gradlew test             # run unit tests
+```
+Build → Generate Signed Bundle / APK → APK → create/use a keystore → Release
 ```
 
----
+Output: `app/build/outputs/apk/release/app-release.apk`
+
+### 5. Install via ADB
+
+```bash
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+## Command Line Build
+
+```bash
+cd FocusFilter
+./gradlew assembleDebug          # debug APK
+./gradlew assembleRelease        # release APK (needs signing config)
+```
 
 ## First-Time Setup on Device
 
-1. Install the APK (enable "Install from unknown sources")
-2. Open FocusFilter
-3. Complete the legal consent and trusted apps onboarding
-4. Grant **Notification Access** when prompted
-5. Select a focus mode and toggle ON
-
----
+1. Install the APK
+2. Open **FocusFilter**
+3. Go to **Settings** tab
+4. Tap **Grant** next to "Notification Access" → enable FocusFilter in system settings
+5. Tap **Grant** next to "Do Not Disturb Access" → enable in system settings
+6. Return to the **Home** tab
+7. Select a focus mode (Gaming, Work, Sleep, or Custom)
+8. Toggle the Focus switch ON
 
 ## Project Structure
 
 ```
 app/src/main/
 ├── kotlin/com/focusfilter/
-│   ├── FocusFilterApplication.kt        # App init, rules cache, DI wiring
-│   ├── MainActivity.kt                  # Single activity, bottom nav host
-│   ├── adapter/                         # RecyclerView adapters (5)
+│   ├── FocusFilterApplication.kt       # App entry, dependency wiring
+│   ├── MainActivity.kt                 # Single activity, bottom nav host
+│   ├── adapter/                        # RecyclerView adapters
 │   ├── data/
 │   │   ├── db/
-│   │   │   ├── AppDatabase.kt           # Room DB, v9, all migrations
-│   │   │   ├── dao/                     # 4 DAOs
-│   │   │   ├── entities/                # 4 Room entities
-│   │   │   └── converters/              # Type converters
-│   │   ├── keyword/                     # KeywordSafelist entity, DAO, manager
-│   │   └── repository/                  # 3 repositories
-│   ├── model/                           # FocusModeType, NotificationAction enums
+│   │   │   ├── AppDatabase.kt          # Room database (seeded with defaults)
+│   │   │   ├── dao/                    # Data access objects
+│   │   │   └── entities/               # Room entities
+│   │   └── repository/                 # Repository layer
+│   ├── model/                          # FocusModeType, NotificationAction enums
 │   ├── service/
-│   │   ├── FocusFilterNotificationService.kt  # 12-step pipeline (core)
-│   │   ├── BertSpamDetector.kt                # ONNX Runtime inference
-│   │   ├── BertTokenizer.kt                   # BERT tokenizer
+│   │   ├── FocusFilterNotificationService.kt  # NotificationListenerService
 │   │   ├── NotificationClassifier.kt          # Classifier interface
-│   │   ├── SimpleClassifier.kt                # Keyword fallback classifier
-│   │   ├── RuleEngine.kt                      # User rule matching
-│   │   ├── SafelistManager.kt                 # Tiered SEA/global safelist
-│   │   └── BootReceiver.kt                    # Restarts service on boot
-│   ├── ui/                              # 12 Fragments
+│   │   ├── SimpleClassifier.kt                # Keyword-based implementation
+│   │   └── BootReceiver.kt                    # BroadcastReceiver for boot
+│   ├── ui/
+│   │   ├── home/HomeFragment.kt        # Dashboard + mode selector
+│   │   ├── inbox/InboxFragment.kt      # Filtered notification inbox
+│   │   ├── rules/RulesFragment.kt      # Rule management
+│   │   ├── logs/LogsFragment.kt        # Activity log
+│   │   └── settings/SettingsFragment.kt
 │   ├── util/
-│   │   └── PreferencesManager.kt        # SharedPreferences wrapper
-│   └── viewmodel/                       # 8 ViewModels
-├── assets/
-│   ├── model_int8.onnx                  # BERT model (4.3MB, INT8 quantized)
-│   ├── vocab.txt                        # 30,522 token vocabulary
-│   ├── tokenizer.json                   # Tokenizer config
-│   └── config.json                      # Model architecture config
-└── res/
-    ├── layout/                          # 20 XML layouts
-    ├── drawable/                        # Vector icons + backgrounds
-    ├── navigation/nav_graph.xml         # Navigation graph
-    └── values/                          # colors, themes, strings, dimens
+│   │   ├── DndManager.kt               # Do Not Disturb control
+│   │   └── PreferencesManager.kt       # SharedPreferences wrapper
+│   └── viewmodel/                      # ViewModels for each screen
+├── res/
+│   ├── layout/                         # XML layouts (dark Material You)
+│   ├── drawable/                       # Vector icons + shape backgrounds
+│   ├── values/colors.xml               # Dark palette (#0D0F1A base)
+│   ├── values/themes.xml               # Material3 dark theme
+│   ├── navigation/nav_graph.xml        # Navigation graph
+│   └── menu/bottom_nav_menu.xml        # Bottom navigation items
+└── AndroidManifest.xml
 ```
-
----
 
 ## Architecture
 
-- **MVVM** — ViewModel + LiveData + Repository
-- **Room** — local SQLite with coroutines Flow, 9 migrations
+- **MVVM** — ViewModel + LiveData + Repository pattern
+- **Room** — local SQLite with coroutines Flow
 - **Navigation Component** — single-activity, fragment-based
-- **ONNX Runtime Mobile** — on-device BERT inference
-- **Material You (Material3)** — dark theme, `#0D0F1A` base
-
----
-
-## The AI Model
-
-| Property | Value |
-|---|---|
-| Base model | bert-tiny-finetuned-sms-spam-detection (mrm8488) |
-| Format | ONNX, INT8 quantized |
-| Size | 4.3MB |
-| Architecture | 2-layer BERT, 128 hidden size, 2 attention heads |
-| Vocabulary | 30,522 tokens |
-| Runtime | ONNX Runtime Mobile |
-| Internet required | No |
-
----
+- **Material You (Material3)** — dark theme, `#0D0F1A` background
 
 ## Privacy
 
-- **No INTERNET permission** — verifiable in `AndroidManifest.xml`
-- No analytics, no crash reporting, no ads, no tracking
-- No third-party data SDKs
-- Notification content processed in memory only — never stored in full
-- Logs auto-deleted after 14 days
-- All data in local Room SQLite — uninstall removes everything
-
----
-
-## Why Not on Google Play?
-
-- Developer is under 18 (Google requires 18+)
-- $25 registration fee
-- Google Play SDKs conflict with zero-tracking architecture
-
-Planned for F-Droid once requirements are met.
-
----
-
-## Contributing
-
-PRs welcome. Please:
-- Keep the zero-internet-permission constraint
-- Don't add analytics or tracking of any kind
-- Test on API 26+ before submitting
-
----
-
-## License
-
-GPL-3.0 — see `LICENSE` file.
-
----
-
-*Built by a teenager on a phone.*
+- Zero network permissions
+- No analytics, no crash reporting, no ads
+- No third-party SDKs
+- All data stored in local Room SQLite database on device
+- Notification content never leaves the device

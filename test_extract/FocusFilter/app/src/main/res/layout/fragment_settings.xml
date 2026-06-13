@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:text="Settings"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp" />
+
+        <!-- ── PERMISSIONS ─────────────────────────────────────────────── -->
+        <TextView style="@style/SettingsSectionLabel" android:text="PERMISSIONS" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/SettingsCard">
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <!-- Notification Access -->
+                <LinearLayout style="@style/SettingsRow">
+                    <ImageView style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_inbox_empty"
+                        android:background="@drawable/bg_mode_work"
+                        app:tint="@color/mode_work" />
+                    <LinearLayout style="@style/SettingsRowText">
+                        <TextView style="@style/SettingsRowTitle" android:text="Notification Access" />
+                        <TextView style="@style/SettingsRowDesc" android:text="Required to read and filter notifications" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:gravity="end">
+                        <TextView android:id="@+id/tvNotifStatus"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="Not granted" android:textColor="@color/accent_red" android:textSize="13sp" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnGrantNotification"
+                            style="@style/Widget.Material3.Button.TonalButton"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Grant" android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ── TRUSTED APPS & SAVED LOGS ─────────────────────────────── -->
+        <TextView style="@style/SettingsSectionLabel" android:text="TRUSTED APPS" />
+
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/rowTrustedApps"
+                    style="@style/SettingsClickableRow">
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_check_circle"
+                        android:background="@drawable/bg_mode_work"
+                        app:tint="@color/accent_teal" />
+                    <LinearLayout style="@style/SettingsRowText">
+                        <TextView style="@style/SettingsRowTitle" android:text="Trusted Apps" />
+                        <TextView style="@style/SettingsRowDesc"
+                            android:text="Apps that always deliver their notifications, even in strict focus modes" />
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/text_tertiary" />
+                </LinearLayout>
+
+                <View style="@style/Divider" />
+
+                <LinearLayout
+                    android:id="@+id/rowSavedLogs"
+                    style="@style/SettingsClickableRow">
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_notifications"
+                        android:background="@drawable/bg_mode_work"
+                        app:tint="@color/accent_amber" />
+                    <LinearLayout style="@style/SettingsRowText">
+                        <TextView style="@style/SettingsRowTitle" android:text="Saved Notifications" />
+                        <TextView style="@style/SettingsRowDesc"
+                            android:text="Notifications you've saved permanently — never auto-deleted" />
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/text_tertiary" />
+                </LinearLayout>
+                <View style="@style/Divider" />
+
+                <LinearLayout
+                    android:id="@+id/rowKeywordSafelist"
+                    style="@style/SettingsClickableRow">
+                    <ImageView
+                        style="@style/SettingsRowIcon"
+                        android:src="@drawable/ic_block"
+                        android:background="@drawable/bg_mode_gaming"
+                        app:tint="@color/mode_gaming" />
+                    <LinearLayout style="@style/SettingsRowText">
+                        <TextView style="@style/SettingsRowTitle" android:text="Always Allowed Keywords" />
+                        <TextView style="@style/SettingsRowDesc"
+                            android:text="Words that always pass through, regardless of filters" />
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/text_tertiary" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ── SAFETY ──────────────────────────────────────────────────── -->
+        <TextView style="@style/SettingsSectionLabel" android:text="SAFETY" />
+
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <!-- Emergency Bypass -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="20dp" android:layout_height="20dp"
+                            android:src="@drawable/ic_shield"
+                            android:layout_marginEnd="10dp"
+                            app:tint="@color/accent_red" />
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical">
+                            <TextView style="@style/SettingsRowTitle" android:text="Emergency Bypass" />
+                            <TextView style="@style/SettingsRowDesc"
+                                android:text="Pause all filtering temporarily (e.g. for appointments)" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <!-- Simple Active / Off label — no countdown timer -->
+                        <TextView
+                            android:id="@+id/tvBypassStatus"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Off"
+                            android:textColor="@color/accent_teal"
+                            android:textSize="13sp" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnBypassToggle"
+                            style="@style/Widget.Material3.Button.TonalButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pause 1 Hour"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View style="@style/Divider" />
+
+                <!-- Log-only mode -->
+                <LinearLayout style="@style/SettingsRow">
+                    <LinearLayout style="@style/SettingsRowText">
+                        <TextView style="@style/SettingsRowTitle" android:text="Log-Only Mode" />
+                        <TextView style="@style/SettingsRowDesc"
+                            android:text="Evaluate and log everything — never cancel notifications. Safe for first-time use." />
+                    </LinearLayout>
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchLogOnly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ── AI ─────────────────────────────────────────────────────── -->
+        <TextView style="@style/SettingsSectionLabel" android:text="AI SPAM DETECTION" />
+
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <!-- AI toggle + model status -->
+                <LinearLayout style="@style/SettingsRow">
+                    <LinearLayout style="@style/SettingsRowText">
+                        <TextView style="@style/SettingsRowTitle" android:text="BERT Spam Filter" />
+                        <TextView style="@style/SettingsRowDesc"
+                            android:text="On-device AI (bert-tiny) classifies every notification before your rules. 100%% local, no internet." />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:gravity="end|center_vertical">
+                        <!-- Model status indicator — consistent with Notification/DND permission status style -->
+                        <TextView
+                            android:id="@+id/tvModelStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="Loading model…"
+                            android:textColor="@color/accent_amber"
+                            android:textSize="11sp"
+                            android:visibility="gone" />
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switchAiSpam"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View style="@style/Divider" />
+
+                <!-- Sensitivity slider (visible only when AI is enabled) -->
+                <LinearLayout
+                    android:id="@+id/layoutThreshold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="4dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="4dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Sensitivity"
+                            android:textColor="@color/text_primary"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium" />
+                        <TextView
+                            android:id="@+id/tvThresholdValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="80%"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/sliderSpamThreshold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:valueFrom="0.70"
+                        android:valueTo="0.95"
+                        android:stepSize="0.05"
+                        android:value="0.80"
+                        app:labelBehavior="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="8dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="More catches"
+                            android:textColor="@color/text_tertiary"
+                            android:textSize="11sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fewer false positives"
+                            android:textColor="@color/text_tertiary"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View style="@style/Divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
+                    <ImageView
+                        android:layout_width="14dp" android:layout_height="14dp"
+                        android:src="@drawable/ic_shield"
+                        android:layout_marginEnd="8dp"
+                        app:tint="@color/accent_teal" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Finance, system, and emergency apps are always protected — the AI cannot block them."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:lineSpacingMultiplier="1.3" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ── BEHAVIOUR ───────────────────────────────────────────────── -->
+        <TextView style="@style/SettingsSectionLabel" android:text="BEHAVIOUR" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/SettingsCard">
+            <LinearLayout style="@style/SettingsRow">
+                <ImageView style="@style/SettingsRowIcon"
+                    android:src="@drawable/ic_settings"
+                    android:background="@drawable/bg_mode_custom"
+                    app:tint="@color/mode_custom" />
+                <LinearLayout style="@style/SettingsRowText">
+                    <TextView style="@style/SettingsRowTitle" android:text="Start on Boot" />
+                    <TextView style="@style/SettingsRowDesc" android:text="Resume active focus mode after device restart" />
+                </LinearLayout>
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchStartOnBoot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ── LEGAL ───────────────────────────────────────────────────── -->
+        <TextView style="@style/SettingsSectionLabel" android:text="LEGAL" />
+
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="4dp">
+
+                <LinearLayout
+                    android:id="@+id/btnPrivacyPolicy"
+                    style="@style/SettingsClickableRow">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@drawable/ic_shield" android:layout_marginEnd="14dp"
+                        app:tint="@color/accent_blue" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Privacy Policy"
+                        android:textColor="@color/text_primary" android:textSize="15sp"
+                        android:fontFamily="sans-serif-medium" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp"
+                        android:src="@drawable/ic_back" android:rotation="180"
+                        app:tint="@color/text_tertiary" />
+                </LinearLayout>
+
+                <View style="@style/Divider" />
+
+                <LinearLayout
+                    android:id="@+id/btnTermsOfService"
+                    style="@style/SettingsClickableRow">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@drawable/ic_check_circle" android:layout_marginEnd="14dp"
+                        app:tint="@color/accent_purple" />
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Terms of Service"
+                        android:textColor="@color/text_primary" android:textSize="15sp"
+                        android:fontFamily="sans-serif-medium" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp"
+                        android:src="@drawable/ic_back" android:rotation="180"
+                        app:tint="@color/text_tertiary" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ── ABOUT ────────────────────────────────────────────────────── -->
+        <TextView style="@style/SettingsSectionLabel" android:text="ABOUT" />
+
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="20dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="FocusFilter" android:textColor="@color/text_primary"
+                    android:textSize="16sp" android:fontFamily="sans-serif-medium" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp" android:text="v5.4"
+                    android:textColor="@color/text_secondary" android:textSize="14sp" />
+
+                <View style="@style/Divider" android:layout_marginVertical="16dp" />
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:gravity="center_vertical" android:orientation="horizontal"
+                    android:layout_marginBottom="4dp">
+                    <ImageView android:layout_width="14dp" android:layout_height="14dp"
+                        android:src="@drawable/ic_shield" app:tint="@color/accent_teal"
+                        android:layout_marginEnd="8dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="100%% local — no data leaves your device"
+                        android:textColor="@color/accent_teal" android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:gravity="center_vertical" android:orientation="horizontal">
+                    <ImageView android:layout_width="14dp" android:layout_height="14dp"
+                        android:src="@drawable/ic_shield" app:tint="@color/accent_blue"
+                        android:layout_marginEnd="8dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="AI runs fully on-device (bert-tiny INT8)"
+                        android:textColor="@color/accent_blue" android:textSize="13sp" />
+                </LinearLayout>
+
+                <View style="@style/Divider" android:layout_marginVertical="16dp" />
+
+                <LinearLayout
+                    android:id="@+id/btnAboutWebsite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true" android:focusable="true"
+                    android:paddingVertical="4dp">
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp"
+                        android:src="@drawable/ic_back" android:rotation="180"
+                        android:layout_marginEnd="8dp" app:tint="@color/accent_blue" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Visit FocusFilter Website"
+                        android:textColor="@color/accent_blue" android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

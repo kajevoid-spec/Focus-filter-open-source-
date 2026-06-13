@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FocusFilter</string>
+    <string name="notification_listener_label">FocusFilter Notification Listener</string>
+
+    <!-- Nav -->
+    <string name="nav_home">Home</string>
+    <string name="nav_inbox">Inbox</string>
+    <string name="nav_rules">Rules</string>
+    <string name="nav_logs">Logs</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_modes">Modes</string>
+
+    <!-- Home -->
+    <string name="focus_mode_active">Focus Mode Active</string>
+    <string name="focus_mode_inactive">Focus is OFF</string>
+    <string name="protected_message">Your phone is protected from distractions</string>
+    <string name="inactive_message">Tap to activate focus protection</string>
+    <string name="choose_mode">Choose Mode</string>
+    <string name="manage_modes">Manage Modes</string>
+    <string name="todays_summary">Today\'s Summary</string>
+    <string name="view_all">View All</string>
+    <string name="notifications_filtered">Notifications Filtered</string>
+    <string name="important_allowed">Important Allowed</string>
+    <string name="focus_time_today">Focus Time Today</string>
+
+    <!-- Built-in Modes (no emojis) -->
+    <string name="mode_gaming">Gaming Mode</string>
+    <string name="mode_work">Work Mode</string>
+    <string name="mode_sleep">Sleep Mode</string>
+    <string name="mode_custom">Custom Mode</string>
+    <string name="mode_study">Study Mode</string>
+    <string name="mode_exam">Exam Mode</string>
+    <string name="mode_deep_focus">Deep Focus</string>
+    <string name="mode_reading">Reading Mode</string>
+
+    <string name="mode_gaming_desc">Block distractions, allow important</string>
+    <string name="mode_work_desc">Prioritize work apps and important alerts</string>
+    <string name="mode_sleep_desc">Only emergencies will break through</string>
+    <string name="mode_custom_desc">Create your own rules and filters</string>
+    <string name="mode_study_desc">Deep focus for learning and studying</string>
+    <string name="mode_exam_desc">Maximum focus — only emergencies pass</string>
+    <string name="mode_deep_focus_desc">Zero interruptions — you\'re in the zone</string>
+    <string name="mode_reading_desc">Quiet time for books and articles</string>
+
+    <!-- Modes screen -->
+    <string name="modes_title">Focus Modes</string>
+    <string name="mode_new">New Mode</string>
+    <string name="mode_create_title">New Focus Mode</string>
+    <string name="mode_name_hint">Mode Name</string>
+    <string name="mode_desc_hint">Description (optional)</string>
+    <string name="mode_default_action_hint">Default Action for unmatched notifications</string>
+    <string name="mode_allowed_kw_hint">Always allow keywords (comma-separated)</string>
+    <string name="mode_blocked_kw_hint">Always block keywords (comma-separated)</string>
+    <string name="mode_silence_calls_title">Silence Calls</string>
+    <string name="mode_silence_calls_desc">Block incoming calls during this mode</string>
+    <string name="mode_created">Mode created!</string>
+    <string name="mode_deleted">Mode deleted.</string>
+    <string name="mode_deactivated">Focus mode deactivated.</string>
+
+    <!-- Inbox -->
+    <string name="inbox_title">Filtered Inbox</string>
+    <string name="inbox_empty">No filtered notifications</string>
+    <string name="inbox_empty_sub">Notifications held or blocked by your rules appear here</string>
+    <string name="restore">Restore</string>
+    <string name="delete">Delete</string>
+    <string name="clear_all">Clear All</string>
+    <string name="allow_once">Allow Once</string>
+    <string name="allow_once_message">Let this notification through just once. The filter rule stays active.</string>
+
+    <!-- Rules -->
+    <string name="rules_title">Rules</string>
+    <string name="vip_contacts">VIP Contacts</string>
+    <string name="allowed_apps">Allowed Apps</string>
+    <string name="keyword_filters">Keyword Filters</string>
+    <string name="custom_rules">Custom Rules</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="add_keyword">Add Keyword</string>
+    <string name="add_rule">Add Rule</string>
+
+    <!-- Actions -->
+    <string name="action_allow">Allow</string>
+    <string name="action_block">Block</string>
+    <string name="action_silent">Block</string>
+    <string name="action_hold">Hold</string>
+    <string name="action_override">Allow Once</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="notification_access">Notification Access</string>
+    <string name="notification_access_desc">Required to read and filter notifications</string>
+    <string name="focus_on_boot">Start on Boot</string>
+    <string name="focus_on_boot_desc">Resume active focus mode after restart</string>
+    <string name="about">About FocusFilter</string>
+    <string name="version">FocusFilter v5.4</string>
+    <string name="privacy_note">100%% local — no data ever leaves your device</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="about_website">Visit Website</string>
+
+    <!-- Saved Notifications (was Saved Logs) -->
+    <string name="saved_notifications_title">Saved Notifications</string>
+    <string name="saved_notifications_desc">Notifications you\'ve saved permanently — never auto-deleted</string>
+
+    <!-- Keyword Safelist -->
+    <string name="keyword_safelist_title">Always Allowed Keywords</string>
+    <string name="keyword_safelist_desc">Notifications containing these words always pass through, regardless of filters</string>
+    <string name="keyword_safelist_empty">No keywords added yet</string>
+    <string name="keyword_safelist_empty_sub">Tap + to add words like "urgent", "mom", or "bank"</string>
+
+    <!-- Legal consent -->
+    <string name="legal_title">Before You Continue</string>
+    <string name="legal_subtitle">FocusFilter is built on privacy. Your data never leaves your device.</string>
+    <string name="legal_privacy_check">I have read and agree to the Privacy Policy</string>
+    <string name="legal_terms_check">I have read and agree to the Terms of Service</string>
+    <string name="legal_continue">Continue</string>
+
+    <!-- Logs -->
+    <string name="logs_title">Activity Logs</string>
+    <string name="logs_empty">No blocked activity today.</string>
+    <string name="logs_empty_sub">Your focus session is running smoothly.</string>
+    <string name="logs_search_hint">Search apps or categories…</string>
+    <string name="logs_filter_all">All</string>
+    <string name="logs_filter_blocked">Blocked</string>
+    <string name="logs_filter_allowed">Allowed</string>
+    <string name="logs_filter_override">Overrides</string>
+    <string name="logs_filter_social">Social</string>
+    <string name="logs_filter_important">Important</string>
+    <string name="logs_clear_all">Clear all</string>
+    <string name="logs_clear_7d">Older than 7 days</string>
+
+    <!-- Classifier labels -->
+    <string name="label_important">important</string>
+    <string name="label_otp">otp</string>
+    <string name="label_spam">spam</string>
+    <string name="label_social">social</string>
+    <string name="label_promo">promo</string>
+    <string name="label_unknown">unknown</string>
+    <string name="label_games">games</string>
+    <string name="label_payment">payment</string>
+    <string name="label_bank">bank</string>
+    <string name="label_security">security</string>
+    <string name="label_emergency">emergency</string>
+
+    <!-- Misc -->
+    <string name="blocked">Blocked</string>
+    <string name="held">Held</string>
+    <string name="allowed">Allowed</string>
+    <string name="silent">Blocked</string>
+    <string name="override">Override</string>
+    <string name="ago">ago</string>
+    <string name="just_now">Just now</string>
+    <string name="min_ago">m ago</string>
+    <string name="hr_ago">h ago</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="ok">OK</string>
+</resources>
