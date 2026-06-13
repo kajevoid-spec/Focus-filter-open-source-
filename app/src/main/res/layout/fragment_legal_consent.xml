@@ -55,7 +55,7 @@
             android:orientation="vertical"
             android:padding="4dp">
 
-            <!-- Privacy Policy — tap the row to read the document before accepting -->
+            <!-- Privacy Policy -->
             <LinearLayout
                 android:id="@+id/layoutPrivacyRow"
                 android:layout_width="match_parent"
@@ -79,14 +79,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/tvPrivacyTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Privacy Policy"
                         android:textColor="@color/accent_purple"
                         android:textSize="15sp"
-                        android:fontFamily="sans-serif-medium"
-                        android:paintFlags="8" />
+                        android:fontFamily="sans-serif-medium" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -103,7 +105,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:background="@color/divider" />
 
-            <!-- Terms of Service — tap the row to read the document before accepting -->
+            <!-- Terms of Service -->
             <LinearLayout
                 android:id="@+id/layoutTermsRow"
                 android:layout_width="match_parent"
@@ -127,14 +129,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/tvTermsTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Terms of Service"
                         android:textColor="@color/accent_purple"
                         android:textSize="15sp"
-                        android:fontFamily="sans-serif-medium"
-                        android:paintFlags="8" />
+                        android:fontFamily="sans-serif-medium" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
