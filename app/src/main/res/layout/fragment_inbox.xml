@@ -35,19 +35,48 @@
             android:textSize="13sp" />
     </RelativeLayout>
 
-    <!-- Info bar -->
-    <TextView
+    <!-- Info banner -->
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/tvInfoBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="6dp"
-        android:text="Notifications are auto-deleted after 14 days. Hold any item to save it permanently."
-        android:textColor="@color/text_secondary"
-        android:textSize="12sp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/bg_card"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/accent_amber"
+        app:strokeWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvInfoBar" />
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⏳"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Inbox notifications are automatically deleted after 14 days. Hold any item to save what matters."
+                android:textColor="@color/accent_amber"
+                android:textSize="12sp"
+                android:lineSpacingMultiplier="1.3" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- Empty State -->
     <LinearLayout
